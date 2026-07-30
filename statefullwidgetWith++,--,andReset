@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
+  int c = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Stateful Widget Example"),
+          backgroundColor: Colors.blue,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Icon(
+                Icons.school,
+                color: Colors.orange,
+                size: 250,
+              ),
+
+              SizedBox(height: 15),
+
+              Text(
+                "Count : $c",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              SizedBox(height: 25),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        c++;
+                      });
+                    },
+                    child: Text("Increment"),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (c > 0) {
+                          c--;
+                        }
+                      });
+                    },
+                    child: Text("Decrement"),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        c = 0;
+                      });
+                    },
+                    child: Text("Reset"),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        c++;
+                      });
+                    },
+                    child: Text("Click Me"),
+                  ),
+
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
