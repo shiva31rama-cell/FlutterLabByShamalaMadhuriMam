@@ -1,0 +1,99 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
+    double width = MediaQuery.of(context).size.width;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Responsive UI"),
+        ),
+
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage("https://picsum.photos/800"),
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          child: Center(
+            child: width < 600
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Text(
+                        "Mobile Screen",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      SizedBox(height: 20),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Home"),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Profile"),
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Settings"),
+                      ),
+                    ],
+                  )
+
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Text(
+                        "Desktop Screen",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      SizedBox(height: 20),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Text("Home"),
+                          SizedBox(width: 20),
+
+                          Text("About"),
+                          SizedBox(width: 20),
+
+                          Text("Contact"),
+                        ],
+                      ),
+                    ],
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+}
