@@ -1,0 +1,162 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  MyApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: FoodScreen(),
+    );
+  }
+}
+
+class FoodScreen extends StatelessWidget {
+  FoodScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Food Ordering App"),
+        backgroundColor: Colors.orange,
+      ),
+
+      body: Padding(
+        padding: EdgeInsets.all(15),
+
+        child: ListView(
+          children: [
+
+            // Pizza
+            FoodCard(
+              icon: Icons.local_pizza,
+              name: "Pizza",
+              price: "₹250",
+            ),
+
+            SizedBox(height: 15),
+
+            // Burger
+            FoodCard(
+              icon: Icons.lunch_dining,
+              name: "Burger",
+              price: "₹150",
+            ),
+
+            SizedBox(height: 15),
+
+            // Biryani
+            FoodCard(
+              icon: Icons.rice_bowl,
+              name: "Biryani",
+              price: "₹200",
+            ),
+
+            SizedBox(height: 15),
+
+            // Healthy Salad
+            FoodCard(
+              icon: Icons.eco,
+              name: "Healthy Salad",
+              price: "₹120",
+            ),
+
+            SizedBox(height: 15),
+
+            // Idli
+            FoodCard(
+              icon: Icons.breakfast_dining,
+              name: "Idli",
+              price: "₹80",
+            ),
+
+            SizedBox(height: 15),
+
+            // Fruit Bowl
+            FoodCard(
+              icon: Icons.apple,
+              name: "Fruit Bowl",
+              price: "₹100",
+            ),
+
+            SizedBox(height: 15),
+
+            // Veg Sandwich
+            FoodCard(
+              icon: Icons.lunch_dining,
+              name: "Veg Sandwich",
+              price: "₹130",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// Reusable Custom Widget
+class FoodCard extends StatelessWidget {
+  IconData icon;
+  String name;
+  String price;
+
+  FoodCard({
+    required this.icon,
+    required this.name,
+    required this.price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5,
+
+      child: ListTile(
+
+        // Food Icon
+        leading: Icon(
+          icon,
+          size: 50,
+          color: Colors.deepOrangeAccent,
+        ),
+
+        // Food Name
+        title: Text(
+          name,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        // Food Price
+        subtitle: Text(
+          price,
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.green,
+          ),
+        ),
+
+        // Add to Cart Button
+        trailing: ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("$name added to cart"),
+              ),
+            );
+          },
+          child: Text("ADD TO CART"),
+        ),
+      ),
+    );
+  }
+}
