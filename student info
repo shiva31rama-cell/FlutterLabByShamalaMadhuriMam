@@ -1,0 +1,143 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  MyApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: StudentScreen(),
+    );
+  }
+}
+
+class StudentScreen extends StatefulWidget {
+  StudentScreen();
+
+  @override
+  State<StudentScreen> createState() {
+    return StudentScreenState();
+  }
+}
+
+class StudentScreenState extends State<StudentScreen> {
+  String name = "";
+  String branch = "";
+  String cgpa = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Student Information"),
+        backgroundColor: Colors.blue,
+      ),
+
+      body: Padding(
+        padding: EdgeInsets.all(20),
+
+        child: Column(
+          children: [
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Enter Name",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                name = value;
+              },
+            ),
+
+            SizedBox(height: 10),
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Enter Branch",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                branch = value;
+              },
+            ),
+
+            SizedBox(height: 10),
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Enter CGPA",
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                cgpa = value;
+              },
+            ),
+
+            SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: () {
+                setState(() {});
+              },
+              child: Text("ADD STUDENT"),
+            ),
+
+            SizedBox(height: 20),
+
+            if (name.isNotEmpty)
+              StudentCard(
+                name: name,
+                branch: branch,
+                cgpa: cgpa,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// Custom Reusable Widget
+class StudentCard extends StatelessWidget {
+  String name;
+  String branch;
+  String cgpa;
+
+  StudentCard({
+    required this.name,
+    required this.branch,
+    required this.cgpa,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5,
+
+      child: ListTile(
+        leading: Icon(
+          Icons.person,
+          color: Colors.blue,
+          size: 40,
+        ),
+
+        title: Text(
+          name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        subtitle: Text(
+          "Branch: $branch\nCGPA: $cgpa",
+        ),
+      ),
+    );
+  }
+}
