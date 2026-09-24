@@ -1,104 +1,82 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Student Profile Card",
+      title: 'Student Profile Card',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Student Profile Card"),
+          title: const Text('Student Profile Card'),
           backgroundColor: Colors.deepPurple,
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              // College Logo
-              Image.network(
-                'https://avatars.githubusercontent.com/u/226291180?s=400&u=24d33407af156775823ae95874009f7060bc9fc6&v=4 ',
-                height: 100,
-                width: 100,
-              ),
-
-              SizedBox(height: 10),
-
-              Text(
-                "Rama Krishna",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Replace this URL with your own image URL if required.
+                Image.network(
+                  'https://avatars.githubusercontent.com/u/226291180?s=400',
+                  height: 100,
+                  width: 100,
+                  errorBuilder: (context, error, stackTrace) => const Icon(
+                    Icons.person,
+                    size: 100,
+                  ),
                 ),
-              ),
-
-              SizedBox(height: 5),
-
-              Text(
-                "Roll No : 24PA1A05E2",
-                style: TextStyle(fontSize: 16),
-              ),
-
-              Text(
-                "Branch : CSE",
-                style: TextStyle(fontSize: 16),
-              ),
-
-              SizedBox(height: 25),
-
-              Container(
-                width: 280,
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 3,
-                    ),
-                  ],
+                const SizedBox(height: 10),
+                const Text(
+                  'Rama Krishna',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                child: Row(
-                  children: [
-                    Icon(Icons.phone, color: Colors.grey),
-                    SizedBox(width: 10),
-                    Text("+91 9876543210"),
-                  ],
-                ),
-              ),
-
-              Container(
-                width: 280,
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 3,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.email, color: Colors.grey),
-                    SizedBox(width: 10),
-                    Text("ramakrishna@gmail.com"),
-                  ],
-                ),
-              ),
-            ],
+                const SizedBox(height: 5),
+                const Text('Roll No : 24PA1A05E2'),
+                const Text('Branch : CSE'),
+                const SizedBox(height: 25),
+                const _InfoCard(icon: Icons.phone, text: '+91 9876543210'),
+                const _InfoCard(icon: Icons.email, text: 'ramakrishna@gmail.com'),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Reusable card for phone/email information.
+class _InfoCard extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  const _InfoCard({required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 280,
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 3)],
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.grey),
+          const SizedBox(width: 10),
+          Text(text),
+        ],
       ),
     );
   }
