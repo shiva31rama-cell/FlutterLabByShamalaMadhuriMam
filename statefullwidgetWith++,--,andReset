@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
+// StatefulWidget is required because count changes when buttons are pressed.
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  State<MyApp> createState() => MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyAppState extends State<MyApp> {
-  int c = 0;
+class _MyAppState extends State<MyApp> {
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,74 +21,54 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Stateful Widget-1"),
+          title: const Text('Stateful Widget - Counter'),
           backgroundColor: Colors.blue,
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-              Icon(
-                Icons.school,
-                color: Colors.orange,
-                size: 250,
-              ),
-
-              SizedBox(height: 15),
-
+              const Icon(Icons.school, color: Colors.orange, size: 200),
+              const SizedBox(height: 15),
               Text(
-                "Count : $c",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+                'Count : $count',
+                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
+              const SizedBox(height: 25),
 
-              SizedBox(height: 25),
-
+              // Row places all four buttons horizontally.
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() => count++);
+                    },
+                    child: const Text('Increment'),
+                  ),
+                  const SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        c++;
+                        if (count > 0) count--;
                       });
                     },
-                    child: Text("Increment"),
+                    child: const Text('Decrement'),
                   ),
-
+                  const SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        if (c > 0) {
-                          c--;
-                        }
-                      });
+                      setState(() => count = 0);
                     },
-                    child: Text("Decrement"),
+                    child: const Text('Reset'),
                   ),
-
+                  const SizedBox(width: 8),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        c = 0;
-                      });
+                      setState(() => count++);
                     },
-                    child: Text("Reset"),
+                    child: const Text('Click Me'),
                   ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        c++;
-                      });
-                    },
-                    child: Text("Click Me"),
-                  ),
-
                 ],
               ),
             ],
