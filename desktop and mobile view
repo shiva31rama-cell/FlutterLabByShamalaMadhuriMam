@@ -1,94 +1,63 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // Get the current screen width.
-    double width = MediaQuery.of(context).size.width;
+    // MediaQuery gives the current screen width.
+    final double width = MediaQuery.of(context).size.width;
+    final bool isMobile = width < 600;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Responsive UI"),
+          title: const Text('Responsive UI'),
           backgroundColor: Colors.blue,
         ),
-
         body: Container(
           width: double.infinity,
           height: double.infinity,
-
-          // Background wallpaper.
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
+            // NetworkImage loads a wallpaper from the internet.
             image: DecorationImage(
-              image: NetworkImage("https://picsum.photos/800"),
+              image: NetworkImage('https://picsum.photos/800'),
               fit: BoxFit.cover,
             ),
           ),
-
           child: Center(
-            // Mobile and desktop show different layouts.
-            child: width < 600
+            child: isMobile
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Mobile Screen",
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                        ),
+                      const Text(
+                        'Mobile Screen',
+                        style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Home"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Profile"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Settings"),
-                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(onPressed: () {}, child: const Text('Home')),
+                      ElevatedButton(onPressed: () {}, child: const Text('Profile')),
+                      ElevatedButton(onPressed: () {}, child: const Text('Settings')),
                     ],
                   )
-                : Column(
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Desktop Screen",
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                        ),
+                      const Text(
+                        'Desktop Screen',
+                        style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Home"),
-                          ),
-                          SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("About"),
-                          ),
-                          SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Contact"),
-                          ),
-                        ],
-                      ),
+                      const SizedBox(width: 25),
+                      ElevatedButton(onPressed: () {}, child: const Text('Home')),
+                      const SizedBox(width: 10),
+                      ElevatedButton(onPressed: () {}, child: const Text('About')),
+                      const SizedBox(width: 10),
+                      ElevatedButton(onPressed: () {}, child: const Text('Contact')),
                     ],
                   ),
           ),
