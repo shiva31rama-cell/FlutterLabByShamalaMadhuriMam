@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   // This text is shown in the center of the screen.
-  String message = "Welcome Home";
+  // Message displayed at the center of the screen.\n  String message = "Welcome Home";
 
   @override
   Widget build(BuildContext context) {
