@@ -1,100 +1,78 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StudentScreen(),
+      home: const StudentScreen(),
     );
   }
 }
 
 class StudentScreen extends StatefulWidget {
-  StudentScreen();
+  const StudentScreen({super.key});
 
   @override
-  State<StudentScreen> createState() {
-    return StudentScreenState();
-  }
+  State<StudentScreen> createState() => _StudentScreenState();
 }
 
-class StudentScreenState extends State<StudentScreen> {
-  String name = "";
-  String branch = "";
-  String cgpa = "";
+class _StudentScreenState extends State<StudentScreen> {
+  String name = '';
+  String branch = '';
+  String cgpa = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Student Information"),
+        title: const Text('Student Information'),
         backgroundColor: Colors.blue,
       ),
-
       body: Padding(
-        padding: EdgeInsets.all(20),
-
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-
             TextField(
-              decoration: InputDecoration(
-                labelText: "Enter Name",
+              decoration: const InputDecoration(
+                labelText: 'Enter Name',
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) {
-                name = value;
-              },
+              onChanged: (value) => name = value,
             ),
-
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextField(
-              decoration: InputDecoration(
-                labelText: "Enter Branch",
+              decoration: const InputDecoration(
+                labelText: 'Enter Branch',
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) {
-                branch = value;
-              },
+              onChanged: (value) => branch = value,
             ),
-
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextField(
-              decoration: InputDecoration(
-                labelText: "Enter CGPA",
+              decoration: const InputDecoration(
+                labelText: 'Enter CGPA',
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) {
-                cgpa = value;
-              },
+              onChanged: (value) => cgpa = value,
             ),
-
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
+                // Rebuild the screen so the updated student card is shown.
                 setState(() {});
               },
-              child: Text("ADD STUDENT"),
+              child: const Text('ADD STUDENT'),
             ),
-
-            SizedBox(height: 20),
-
+            const SizedBox(height: 20),
             if (name.isNotEmpty)
-              StudentCard(
-                name: name,
-                branch: branch,
-                cgpa: cgpa,
-              ),
+              StudentCard(name: name, branch: branch, cgpa: cgpa),
           ],
         ),
       ),
@@ -102,14 +80,14 @@ class StudentScreenState extends State<StudentScreen> {
   }
 }
 
-
-// Custom Reusable Widget
+// Reusable widget that displays the entered student details.
 class StudentCard extends StatelessWidget {
-  String name;
-  String branch;
-  String cgpa;
+  final String name;
+  final String branch;
+  final String cgpa;
 
-  StudentCard({
+  const StudentCard({
+    super.key,
     required this.name,
     required this.branch,
     required this.cgpa,
@@ -119,24 +97,13 @@ class StudentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-
       child: ListTile(
-        leading: Icon(
-          Icons.person,
-          color: Colors.blue,
-          size: 40,
-        ),
-
+        leading: const Icon(Icons.person, color: Colors.blue, size: 40),
         title: Text(
           name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-
-        subtitle: Text(
-          "Branch: $branch\nCGPA: $cgpa",
-        ),
+        subtitle: Text('Branch: $branch\nCGPA: $cgpa'),
       ),
     );
   }
