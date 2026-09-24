@@ -9,9 +9,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // MediaQuery gives the current screen width.
+    // Get the current screen width.
     final double width = MediaQuery.of(context).size.width;
-    final bool isMobile = width < 600;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -23,41 +22,73 @@ class MyApp extends StatelessWidget {
         body: Container(
           width: double.infinity,
           height: double.infinity,
+
+          // Background wallpaper loaded from the internet.
           decoration: const BoxDecoration(
-            // NetworkImage loads a wallpaper from the internet.
             image: DecorationImage(
               image: NetworkImage('https://picsum.photos/800'),
               fit: BoxFit.cover,
             ),
           ),
+
           child: Center(
-            child: isMobile
+            // Mobile and desktop use different layouts.
+            child: width < 600
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         'Mobile Screen',
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(onPressed: () {}, child: const Text('Home')),
-                      ElevatedButton(onPressed: () {}, child: const Text('Profile')),
-                      ElevatedButton(onPressed: () {}, child: const Text('Settings')),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Home'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Profile'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Settings'),
+                      ),
                     ],
                   )
-                : Row(
+                : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         'Desktop Screen',
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                        ),
                       ),
-                      const SizedBox(width: 25),
-                      ElevatedButton(onPressed: () {}, child: const Text('Home')),
-                      const SizedBox(width: 10),
-                      ElevatedButton(onPressed: () {}, child: const Text('About')),
-                      const SizedBox(width: 10),
-                      ElevatedButton(onPressed: () {}, child: const Text('Contact')),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Home'),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('About'),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Contact'),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
           ),
