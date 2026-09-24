@@ -4,13 +4,15 @@ void main() {
   runApp(MyApp());
 }
 
+// StatefulWidget is used because the message changes
+// when the user clicks a menu button.
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => MyAppState();
 }
 
 class MyAppState extends State<MyApp> {
-
+  // This text is shown in the center of the screen.
   String message = "Welcome Home";
 
   @override
@@ -21,12 +23,11 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: Text("Layouts"),
-
           backgroundColor: Colors.blue,
 
-          // Buttons on top-right corner
+          // AppBar actions are automatically arranged
+          // from left to right at the top-right.
           actions: [
-
             TextButton(
               onPressed: () {
                 setState(() {
@@ -77,6 +78,7 @@ class MyAppState extends State<MyApp> {
           ],
         ),
 
+        // The current message is displayed at the center.
         body: Center(
           child: Text(
             message,
