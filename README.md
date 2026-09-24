@@ -31,6 +31,7 @@ The older files have been kept at their original paths so the lab history is not
 ## Study guide
 
 - `docs/flutter_lab_experiment_1_notes.md` – Notes prepared from the supplied **Flutter exp1.pdf**.
+- `docs/repository_audit.md` – Complete inventory and double-check showing that existing program paths were preserved and documenting the cleanup/corrections.
 
 The Experiment 1 notes preserve the source document's main topics: Flutter introduction, Dart, benefits of Flutter, lab learning outcomes, tools, Flutter SDK installation, `flutter doctor`, PATH setup, Android Studio, Android SDK tools, Android licenses, project creation, `lib/main.dart`, and VS Code Flutter setup.
 
