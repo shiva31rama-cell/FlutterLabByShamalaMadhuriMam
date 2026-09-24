@@ -1,53 +1,48 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
+// StatefulWidget is needed because the switch value changes.
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  State<MyApp> createState() => MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyAppState extends State<MyApp> {
-
+class _MyAppState extends State<MyApp> {
+  // false means OFF/Disabled; true means ON/Enabled.
   bool isEnabled = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Enable / Disable Switch"),
+          title: const Text('Enable / Disable Switch'),
           backgroundColor: Colors.blue,
         ),
-
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Text(
-                isEnabled ? "Enabled" : "Disabled",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+                isEnabled ? 'Enabled' : 'Disabled',
+                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-
-              SizedBox(height: 20),
-
+              const SizedBox(height: 20),
               Switch(
                 value: isEnabled,
                 onChanged: (value) {
+                  // Update the switch value and rebuild the UI.
                   setState(() {
                     isEnabled = value;
                   });
                 },
               ),
-
             ],
           ),
         ),
