@@ -8,7 +8,7 @@ This document records a double-check of the repository after cleaning the Flutte
 
 ## Repository inventory
 
-The repository currently contains **17 tracked paths**: 15 program/source files plus `README.md` and the Experiment 1 study notes.
+The repository currently contains **17 tracked files**: 14 program/source files, `README.md`, the Experiment 1 study notes, and this audit file. The `docs` directory itself is also present as a Git tree directory.
 
 ### Original lab practice files preserved
 
@@ -138,7 +138,7 @@ The repository currently contains **17 tracked paths**: 15 program/source files 
 
 ## Double-check against the previous repository tree
 
-The repository tree before the cleaning/refactor pass contained the same 15 original program/source paths listed above. The later work added documentation and did not remove those program paths.
+The repository tree before the cleaning/refactor pass contained the same **14 program/source paths plus `README.md`**. The later work added the two documentation files under `docs/` and did not remove those original program paths.
 
 The Git history also shows individual commits for the old programs and later refactor commits. Therefore, the cleanup was performed as updates to existing files rather than deleting the original program paths.
 
