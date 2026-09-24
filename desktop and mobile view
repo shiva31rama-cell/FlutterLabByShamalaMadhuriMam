@@ -7,7 +7,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
+    // Get the current screen width.
     double width = MediaQuery.of(context).size.width;
 
     return MaterialApp(
@@ -16,12 +16,14 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("Responsive UI"),
+          backgroundColor: Colors.blue,
         ),
 
         body: Container(
           width: double.infinity,
           height: double.infinity,
 
+          // Background wallpaper.
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage("https://picsum.photos/800"),
@@ -30,11 +32,11 @@ class MyApp extends StatelessWidget {
           ),
 
           child: Center(
+            // Mobile and desktop show different layouts.
             child: width < 600
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       Text(
                         "Mobile Screen",
                         style: TextStyle(
@@ -42,30 +44,24 @@ class MyApp extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-
                       SizedBox(height: 20),
-
                       ElevatedButton(
                         onPressed: () {},
                         child: Text("Home"),
                       ),
-
                       ElevatedButton(
                         onPressed: () {},
                         child: Text("Profile"),
                       ),
-
                       ElevatedButton(
                         onPressed: () {},
                         child: Text("Settings"),
                       ),
                     ],
                   )
-
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       Text(
                         "Desktop Screen",
                         style: TextStyle(
@@ -73,20 +69,24 @@ class MyApp extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-
                       SizedBox(height: 20),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
-                          Text("Home"),
-                          SizedBox(width: 20),
-
-                          Text("About"),
-                          SizedBox(width: 20),
-
-                          Text("Contact"),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Home"),
+                          ),
+                          SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("About"),
+                          ),
+                          SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Contact"),
+                          ),
                         ],
                       ),
                     ],
