@@ -123,7 +123,7 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     // Remaining water cannot become negative after reaching the goal.
-    final int remaining = (goal - total).clamp(0, goal);
+    final int remaining = (goal - total).clamp(0, goal).toInt();
 
     // Completion is limited to a maximum of 100%.
     final int percentage = ((total / goal) * 100).clamp(0, 100).round();
